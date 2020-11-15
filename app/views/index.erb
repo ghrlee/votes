@@ -1,0 +1,16 @@
+ <link rel="stylesheet" href="https://unpkg.com/tachyons@4.12.0/css/tachyons.min.css"/>
+
+ <div class="ba ma4">
+  <% @states.each do |state| %>
+    <div class="ba ma4 pa3">
+      <p><u><%=state.name%></u></p>
+      <ul>
+        <li><%=state.climate%></li>
+        <li><%=state.terrain%></li>
+        <li><%=state.flag%></li>
+        <li><%=state.description%></li>
+        <li><%=state.anthem%></li>
+      </ul>
+    </div>
+  <% end %>
+</div>
