@@ -27,9 +27,9 @@ ActiveRecord::Schema.define(version: 2020_11_02_034632) do
     t.string "name"
     t.string "climate"
     t.string "terrain"
-    t.string "flag"
     t.string "description"
     t.string "anthem"
+    t.text "national_flag"
     t.integer "election_period"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

@@ -11,16 +11,18 @@ names = [
           ]
 
 states = []
+new_state = State.new
 
 names.each do |name|
-  states << { population: rand(30_000..80_000),
+  states << { 
+    population: rand(30_000..80_000),
     name: name,
     climate: Faker::TvShows::StarTrek.villain,
     terrain: Faker::Space.meteorite,
-    flag: Faker::Nation.flag,
     description: Faker::Food.spice,
     anthem: Faker::Nation.national_sport,
-    election_period: rand(3..5)
+    election_period: rand(3..5),
+    national_flag: ''
   }
 end
 

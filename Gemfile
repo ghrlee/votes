@@ -11,6 +11,7 @@ gem 'rake'
 gem 'pry'
 gem 'faker'
 gem 'require_all'
+gem 'victor'
 group :test do
  gem 'capybara'
  gem 'database_cleaner'
