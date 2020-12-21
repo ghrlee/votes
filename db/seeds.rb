@@ -4,10 +4,22 @@ require 'pry'
 require_all './app/models/'
 require_all 'db/pools'
 
+# rake db:drop db:create db:migrate
+
 names = [
             'the Collective of Ominous Buzzing', 
             "the People's Republic of Body Hair", 
-            'A Collective of Mollusks'
+            'A Collective of Mollusks',
+            'Trapped and Endlessly Running in Place',
+            Faker::Space.meteorite,
+            Faker::Space.meteorite,
+            Faker::Space.meteorite,
+            Faker::Space.meteorite,
+            Faker::Space.meteorite,
+            Faker::Space.meteorite,
+            Faker::Space.meteorite,
+            Faker::Space.meteorite,
+            Faker::Space.meteorite
           ]
 
 states = []
