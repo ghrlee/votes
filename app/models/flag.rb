@@ -29,20 +29,14 @@ class Flag
     flag_type = ['horizontal', 'vertical', 'banner'].sample
     image = send "#{flag_type}_flag"
 
-    if flag_type == 'banner'
-      image << add_shape
-    else
-      shape = case rand(100) + 1
-        when 50..100 then image << add_shape
-      end
-    end
-
     return image
   end
 
   def banner_flag
     banner_flag_image = Victor::SVG.new
     banner_flag_image.rect x: FRAME_OFFSET, y: FRAME_OFFSET, width: offset_width, height: offset_height, fill: Faker::Color.color_name
+    banner_flag_image << add_shape_from_file
+
     return banner_flag_image
   end
 
@@ -50,6 +44,11 @@ class Flag
     horizontal_flag_image = Victor::SVG.new
     horizontal_flag_image.rect x: FRAME_OFFSET, y: FRAME_OFFSET, width: (180.0 * 0.33), height: 130, fill: Faker::Color.hex_color
     horizontal_flag_image.rect x: (190 - (180.0 * 0.33)), y: FRAME_OFFSET, width: (180.0 * 0.33), height: 130, fill: Faker::Color.hex_color
+
+    shape = case rand(100) + 1
+      when 50..100 then horizontal_flag_image << add_shape_from_file
+    end
+
     return horizontal_flag_image
   end
 
@@ -70,9 +69,19 @@ class Flag
 
   def add_shape
     shape = Victor::SVG.new
-    shape.circle cx: (offset_width / 2) + 10, cy: (offset_height / 2) + 10, r: 22, fill: Faker::Color.hex_color
+    shape.circle cx: (offset_width / 2) + 10, cy: (offset_height / 2) + 10, r: 25, fill: Faker::Color.hex_color
     shape.polygon points: %w[100,50 80,93 125,65 75,65 120,93], fill: Faker::Color.hex_color
 
     return shape
+  end
+
+  def add_shape_from_file
+    files = Dir.entries('app/assets/shapes/').select { |f| f.include?('svg') }
+
+    shape = File.read "app/assets/shapes/#{files.sample}"
+    # find "fill" in string and replace with "fill=#{Faker::Color.hex_color}"
+    flag_image = Victor::SVG.new
+    flag_image << shape
+    return flag_image
   end
 end

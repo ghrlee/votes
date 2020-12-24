@@ -7,13 +7,24 @@ class Profile
     bg = File.read 'app/assets/profile/profile 1.svg'
     face = File.read 'app/assets/face/face1.svg'
     hair = File.read 'app/assets/hair/hair2.svg'
+    # binding.pry
     # /Users/georgelee/practice/Votes/app/assets/profile/profile 1.svg
     svg << bg
     svg << face
     svg << hair
     # svg << troll
     # binding.pry
-    svg.save 'framed-troll'
+    # svg.element fill: 'green', stroke: 'red'
+    svg.build do 
+      css['.main'] = {
+        stroke: "green", 
+        stroke_width: 2,
+        fill: "yellow"
+      }
+    end
     svg.render
+
+    # find and replace stroke=\"#030000\"
+    # find and replace  fill=\"none\"
   end
 end

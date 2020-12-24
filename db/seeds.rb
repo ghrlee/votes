@@ -6,23 +6,36 @@ require_all 'db/pools'
 
 # rake db:drop db:create db:migrate
 
-names = [
-            'the Collective of Ominous Buzzing', 
-            "the People's Republic of Body Hair", 
-            'A Collective of Mollusks',
-            'Trapped and Endlessly Running in Place',
-            Faker::Space.meteorite,
-            Faker::Space.meteorite,
-            Faker::Space.meteorite,
-            Faker::Space.meteorite,
-            Faker::Space.meteorite,
-            Faker::Space.meteorite,
-            Faker::Space.meteorite,
-            Faker::Space.meteorite,
-            Faker::Space.meteorite
-          ]
+def country_name
+  prefixes = [
+              'The Republic of ',
+              "The People's Forgotten Union of ",
+              "",
+              "Saint ",
+              "Plurinational State of "
+             ]
+  suffixes = [
+              " Islands",
+              "ania",
+              " Republic"
 
+             ]
+             
+
+  case rand(100) + 1
+  when 1..25
+    return prefixes.sample + Faker::Space.meteorite
+  when 26..36
+    return Faker::Space.meteorite + suffixes.sample
+  else
+    return Faker::Space.meteorite
+  end
+end
+
+names = []
 states = []
+50.times { names << country_name} 
+
 new_state = State.new
 
 names.each do |name|

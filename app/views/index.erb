@@ -9,10 +9,10 @@
               <div class="">
                 <p class=""><u><%=state.name%></u></p>
                 <ul>
-                  <li><%=state.climate%></li>
-                  <li><%=state.terrain%></li>
-                  <li><%=state.description%></li>
-                  <li><%=state.anthem%></li>
+                  <li>climate: <%=state.climate%></li>
+                  <li>terrain: <%=state.terrain%></li>
+                  <li>description: <%=state.description%></li>
+                  <li>anthem: <%=state.anthem%></li>
                 </ul>
               </div>
 
@@ -29,16 +29,12 @@
           <div class="outline bg-white pa4 ma4 fl w-80"> 
             <div class="fl w-60 pa2">
 
-              <div class="">
+              <div class="main">
                 <p class=""><u></u></p>
                 <%=@profiles.get_profile_image%>
               </div>
 
             </div>
-
-            <%# <div class="fl w-40 pa2">
-              <div class="pv4"></div>
-            </div> %>
             
           </div>     
         </div>
