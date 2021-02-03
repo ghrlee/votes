@@ -1,2 +1,2 @@
-# votes
-I don't know what this is yet
+# 
+This is a simple simulation/experiment of countries with randomly generated data. Names, flags, citizens are not fixed. 
