@@ -14,7 +14,6 @@ class Flag
     svg << image
 
     # ... and save it
-    svg.save 'framed-troll'
     svg.render
   end
 
@@ -26,9 +25,10 @@ class Flag
   end
 
   def create_flag_image
-    flag_type = ['horizontal', 'vertical', 'banner'].sample
+    flag_type = ['horizontal', 'vertical', 'banner', 'horizontal_bars'].sample
+    # flag_type = ['horizontal_bars'].sample
     image = send "#{flag_type}_flag"
-
+    image.render
     return image
   end
 
@@ -50,6 +50,19 @@ class Flag
     end
 
     return horizontal_flag_image
+  end
+
+  def horizontal_bars_flag
+    vertical_flag_image = Victor::SVG.new
+    current_height = FRAME_OFFSET
+    num_bars = [3,4,5].sample
+
+    num_bars.times do 
+      vertical_flag_image.rect x: FRAME_OFFSET, y: current_height, width: offset_width, height: (FRAME_OFFSET/num_bars) + (offset_height / num_bars), fill: Faker::Color.hex_color
+      current_height += (offset_height / num_bars)
+    end
+    
+    return vertical_flag_image
   end
 
   def vertical_flag
@@ -85,3 +98,25 @@ class Flag
     return flag_image
   end
 end
+
+
+# def processLogs(logs, maxSpan)
+#   # Write your code here
+#   # return an array of strings that are user Ids (first) who signed out in less than or equal max span (second)
+#   logs = ["30 99 sign-in", "30 105 sign-out"]
+#   response_array = []
+#   sign_in_array = []
+#   sign_out_array = []
+#   logs.each do |log|
+#     action = log.split(" ")
+#     sign_in_array << log if action[2] == "sign-in"
+#     sign_out_array << log if action[2] == "sign-out"
+#   end
+
+#   sign_in_array.each_with_index do |log, index|
+#     current_id_value = log.split(" ")[0]
+#     current_in_value = log.split(" ")[1]
+#     current_out_value = sign_out_array[index].split(" ")[1]
+#     response_array << current_id_value if (current_out_value.to_i - current_in_value.to_i) <= maxSpan
+#   end
+# end
