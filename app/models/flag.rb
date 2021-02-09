@@ -1,5 +1,5 @@
 class Flag
-  FRAME_OFFSET = 10
+  FRAME_OFFSET = 5
   FULL_HEIGHT = 150
   FULL_WIDTH = 200
 
@@ -19,7 +19,7 @@ class Flag
 
   def create_frame
     frame = Victor::SVG.new
-    frame.rect x: 0, y: 0, width: 300, height: 200, fill: '#336'
+    frame.rect x: 0, y: 0, width: 300, height: 200, fill: '#A463F2'
     frame.rect x: FRAME_OFFSET, y: FRAME_OFFSET, width: 200 - (FRAME_OFFSET*2), height: 150 - (FRAME_OFFSET*2), fill: 'white'
     return frame
   end
@@ -42,8 +42,8 @@ class Flag
 
   def horizontal_flag
     horizontal_flag_image = Victor::SVG.new
-    horizontal_flag_image.rect x: FRAME_OFFSET, y: FRAME_OFFSET, width: (180.0 * 0.33), height: 130, fill: Faker::Color.hex_color
-    horizontal_flag_image.rect x: (190 - (180.0 * 0.33)), y: FRAME_OFFSET, width: (180.0 * 0.33), height: 130, fill: Faker::Color.hex_color
+    horizontal_flag_image.rect x: FRAME_OFFSET, y: FRAME_OFFSET, width: (180.0 * 0.33), height: offset_height, fill: Faker::Color.hex_color
+    horizontal_flag_image.rect x: (FULL_WIDTH - (offset_width / 3)), y: FRAME_OFFSET, width: (180.0 * 0.33), height: offset_height, fill: Faker::Color.hex_color
 
     shape = case rand(100) + 1
       when 50..100 then horizontal_flag_image << add_shape_from_file
@@ -68,7 +68,7 @@ class Flag
   def vertical_flag
     vertical_flag_image = Victor::SVG.new
     vertical_flag_image.rect x: FRAME_OFFSET, y: FRAME_OFFSET, width: offset_width, height: offset_height * 0.33, fill: Faker::Color.hex_color
-    vertical_flag_image.rect x: FRAME_OFFSET, y: (FULL_HEIGHT - FRAME_OFFSET) - (130 * 0.33), width: offset_width, height: offset_height * 0.33, fill: Faker::Color.hex_color
+    vertical_flag_image.rect x: FRAME_OFFSET, y: (FULL_HEIGHT - FRAME_OFFSET) - (offset_height/3), width: offset_width, height: offset_height * 0.33, fill: Faker::Color.hex_color
     return vertical_flag_image
   end
 

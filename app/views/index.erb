@@ -1,14 +1,15 @@
 
- <div class="ba ma4 ph3-ns">
+ <div class="bg-lightest-blue ma4 ph3-ns">
    <div class="cf ph2-ns">
      <% @states.each do |state| %>
         <div class="fl w-100 w-third-ns pa2">
-          <div class="outline bg-white pa4 ma4 fl w-80"> 
+        <%# f6 link dim ph3 pv2 mb2 dib white bg-black %>
+          <button class="bg-washed-yellow pa2 pt4 br4 ba b--white-025"> 
             <div class="fl w-60 pa2">
 
-              <div class="">
-                <p class=""><u><%=state.name%></u></p>
-                <ul>
+              <div class="ph4 tl">
+                <a class="link underline-hover light-purple tl" href="/states/<%=state.name%>"><%=state.name%></a>
+                <ul class="light-purple">
                   <li>climate: <%=state.climate%></li>
                   <li>terrain: <%=state.terrain%></li>
                   <li>description: <%=state.description%></li>
@@ -22,24 +23,10 @@
               <div class="pv4"><%= state.get_flag %> </div>
             </div>
             
-          </div>     
+          </button>     
         </div>
       <% end %>
-      <div class="fl w-100 w-third-ns pa2">
-          <div class="outline bg-white pa4 ma4 fl w-80"> 
-            <div class="fl w-60 pa2">
-
-              <div class="main">
-                <p class=""><u></u></p>
-                <%=@profiles.get_profile_image%>
-              </div>
-
-            </div>
-            
-          </div>     
-        </div>
  
    </div>
 </div>
-
 

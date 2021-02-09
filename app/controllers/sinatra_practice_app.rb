@@ -7,9 +7,9 @@ class SinatraPracticeApp < Sinatra::Base
     erb :"index"
   end
 
-  get '/blogs/:id' do
-    @blog = Blog.find(params[:id])
-    erb :'blogs/show'
+  get '/states/:name' do
+    @state = State.find_by(name: params[:name])
+    erb :'states/show'
   end
 
   get '/profiles' do
