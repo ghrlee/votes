@@ -1,4 +1,5 @@
-class Profile
+class Leader
+
   def get_profile_image
     svg = Victor::SVG.new viewBox: '0 0 300 300'
     file = File.read 'app/assets/face/avataaars (4).svg'
