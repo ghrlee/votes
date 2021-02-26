@@ -26,8 +26,7 @@ class Flag
   end
 
   def create_flag_image
-    flag_type = ['horizontal', 'vertical', 'banner', 'horizontal_bars'].sample
-    # flag_type = ['horizontal_bars'].sample
+    flag_type = get_flag_types.sample
     image = send "#{flag_type}_flag"
     image.render
     return image
@@ -97,6 +96,10 @@ class Flag
     flag_image = Victor::SVG.new
     flag_image << shape
     return flag_image
+  end
+
+  def get_flag_types
+    ['horizontal', 'vertical', 'banner', 'horizontal_bars']
   end
 end
 

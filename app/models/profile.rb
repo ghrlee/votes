@@ -1,30 +1,44 @@
 class Profile
   def get_profile_image
-    svg = Victor::SVG.new viewBox: '0 0 75 104'
-    # binding.pry
-    troll = Victor::SVG.new
-    troll.circle cx: 50, cy: 60, r: 24, fill: Faker::Color.hex_color
-    bg = File.read 'app/assets/profile/profile 1.svg'
-    face = File.read 'app/assets/face/face1.svg'
-    hair = File.read 'app/assets/hair/hair2.svg'
-    # binding.pry
-    # /Users/georgelee/practice/Votes/app/assets/profile/profile 1.svg
-    svg << bg
-    svg << face
-    svg << hair
-    # svg << troll
-    # binding.pry
-    # svg.element fill: 'green', stroke: 'red'
-    svg.build do 
-      css['.main'] = {
-        stroke: "green", 
-        stroke_width: 2,
-        fill: "yellow"
-      }
-    end
+    svg = Victor::SVG.new viewBox: '0 0 300 300'
+    file = File.read 'app/assets/face/avataaars (4).svg'
+
+    avatar = get_avatar
+    svg << file
+    svg << avatar
     svg.render
 
     # find and replace stroke=\"#030000\"
     # find and replace  fill=\"none\"
   end
+
+  def get_avatar
+    avatar_parts = ['bodies', 'hair', 'clothes']
+    new_avatar = Victor::SVG.new viewBox: '0 0 300 300'
+    avatar_parts.each { |part| new_avatar << get_avatar_parts(part) }
+
+    new_avatar << get_face
+    new_avatar
+  end
+
+  def get_face
+    face_parts = ['eyebrows', 'eyes', 'mouth', 'nose']
+    face = Victor::SVG.new
+    face_parts.each { |face_part| face << get_face_parts(face_part) }
+
+    face
+  end
+
+  def get_face_parts(part)
+    files = Dir.entries("app/assets/face/#{part}/").select { |f| f.include?('svg') }
+    part = File.read "app/assets/face/#{part}/#{files.sample}"
+  end
+
+  def get_avatar_parts(part)
+    files = Dir.entries("app/assets/#{part}/").select { |f| f.include?('svg') }
+    part = File.read "app/assets/#{part}/#{files.sample}"
+  end
 end
+
+# next save profile as part of nation
+# add more symbols for flags
