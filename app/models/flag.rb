@@ -2,6 +2,7 @@ class Flag
   FRAME_OFFSET = 5
   FULL_HEIGHT = 150
   FULL_WIDTH = 200
+  BASE_COLOR = '#A463F2'
 
   def create_flag
     frame = create_frame
@@ -19,14 +20,13 @@ class Flag
 
   def create_frame
     frame = Victor::SVG.new
-    frame.rect x: 0, y: 0, width: 300, height: 200, fill: '#A463F2'
+    frame.rect x: 0, y: 0, width: 300, height: 200, fill: BASE_COLOR
     frame.rect x: FRAME_OFFSET, y: FRAME_OFFSET, width: 200 - (FRAME_OFFSET*2), height: 150 - (FRAME_OFFSET*2), fill: 'white'
     return frame
   end
 
   def create_flag_image
-    flag_type = ['horizontal', 'vertical', 'banner', 'horizontal_bars'].sample
-    # flag_type = ['horizontal_bars'].sample
+    flag_type = get_flag_types.sample
     image = send "#{flag_type}_flag"
     image.render
     return image
@@ -97,7 +97,18 @@ class Flag
     flag_image << shape
     return flag_image
   end
+
+  def get_flag_types
+    ['horizontal', 'vertical', 'banner', 'horizontal_bars']
+  end
 end
+
+# idea for future: build a color pallette from a random seed by calling https://www.thecolorapi.com/id?hex=24B1E0
+# https://www.thecolorapi.com/docs
+
+# https://icons8.com/icons/dotty 
+# https://icons8.com/icon/pack/cultures/dotty
+# can also use pallete to change path/fill of svg images
 
 
 # def processLogs(logs, maxSpan)

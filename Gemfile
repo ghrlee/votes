@@ -13,6 +13,7 @@ gem 'faker'
 gem 'require_all'
 gem 'victor'
 gem 'runner'
+gem 'rb-readline', '~> 0.5.3'
 gem 'sidekiq-scheduler'
 group :test do
  gem 'capybara'
